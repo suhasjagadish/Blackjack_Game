@@ -51,16 +51,21 @@ while not is_game_over:
     if user_score == 0 or computer_score == 0 or user_score > 21:
         is_game_over = True
     else:
+        if user_score == 21 :
+            is_game_over = True
         hit = input("Type 'Y' to hit and 'N' to stand\n").upper()
         if hit == "Y":
             user_card.append(deal_card())
+        elif hit == "N":
+            is_game_over = True
         else:
             is_game_over = True
 
 while computer_score != 0 and computer_score < 17:
     computer_card.append(deal_card())
     computer_score = calculate_score(computer_card)
-    print(f"computer cards: {computer_card}")
-    print(f"compute score: {computer_score}")
 
+
+print(f"computer cards: {computer_card}",)
+print(f"compute score: {computer_score}")
 print(compare_scores(computer_score, user_score))
