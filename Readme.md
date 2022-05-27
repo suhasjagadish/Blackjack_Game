@@ -26,7 +26,9 @@ Modules in Python can have some classes, functions and variables.
 Each game of cards requires fundamental values like the cards and the values for each card. In this game we give Ace a value of 1/11, King-Queen-Jack and Ten a value of 10 and rest of the cards take their respective value.
 
 ''' Python
+
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
 '''
 
 ### Dealing card
@@ -35,14 +37,17 @@ With the help of 'random' module i have used 'random.choice()' to select a card 
 and wrapped it up 'deal_card()' function to use it with out repeating the code for all the time.  
 
 ''' Python
+
 def deal_card():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     rand_card = random.choice(cards)
     return rand_card
+
 '''
 With the use of 'for' and 'range' 2 cards are dealt to the user and the dealer and is stored in list 'users_card' and 'dealer_card'
 
-''' python
+''' Python
+
 user_card = []
 dealer_card = []
 is_game_over = False
@@ -50,6 +55,7 @@ is_game_over = False
 for _ in range(2):
     user_card.append(deal_card())
     dealer_card.append(deal_card())
+
 '''
 
 ### Calculate and Compare of scores
@@ -57,6 +63,7 @@ for _ in range(2):
 To calculate the scores of the card dealt a function is created to know the results
 
 ''' Python
+
 def calculate_score(cards):
     if sum(cards) == 21 and len(cards) == 2:
         return 0
@@ -64,16 +71,20 @@ def calculate_score(cards):
         cards.remove(11)
         cards.append(1)
     return sum(cards)
+
 '''
 
 To Compare the scores obtained for the dealer and user, the results are returned as the Blackjack rules
 
 ''' python
+
 user_score = calculate_score(user_card)
 dealer_score = calculate_score(dealer_card)
+
 '''
 
 ''' Python
+
 def compare_scores(dealercards, usercards):
     if user_score == 0:
         return "You win with a blackjack"
@@ -89,6 +100,7 @@ def compare_scores(dealercards, usercards):
         return "You win"
     else:
         return "Dealer win"
+
 '''
 
 ### The Game
@@ -96,6 +108,7 @@ def compare_scores(dealercards, usercards):
 I have used a while loop for running the game since we do not know when the user will stand. I have defined 'is_game_over' as a flag to keep the check for the termination of the loop
 
 ''' Python
+
 while not is_game_over:
     user_score = calculate_score(user_card)
     computer_score = calculate_score(dealer_card)
@@ -118,13 +131,16 @@ while not is_game_over:
 while dealer_score != 0 and dealer_score < 17:
     dealer_card.append(deal_card())
     dealer_score = calculate_score(dealer_card)
+
 '''
 
 ### The result
 
 The winner of the game is showed after comparing the scores of all the cards dealt to the Dealer and User
 ''' Python
+
 print(f"computer cards: {dealer_card}",)
 print(f"compute score: {dealer_score}")
 print(compare_scores(dealer_score, user_score))
+
 '''
