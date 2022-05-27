@@ -13,42 +13,42 @@ def calculate_score(cards):
         cards.append(1)
     return sum(cards)
 
-def compare_scores(compcards, usercards):
+def compare_scores(dealercards, usercards):
     if user_score == 0:
         return "You win with a blackjack"
-    elif computer_score == 0:
-        return "Computer has a Blackjack "
-    elif user_score == computer_score :
+    elif dealer_score == 0:
+        return "Dealer has a Blackjack "
+    elif user_score == dealer_score :
         return "PUSH"
     elif user_score > 21:
-        return "YOU burst,computer win "
-    elif computer_score > 21:
-        return "computer burst,you win"
-    elif user_score > computer_score :
+        return "YOU burst,Dealer win "
+    elif dealer_score > 21:
+        return "Dealer burst,you win"
+    elif user_score > dealer_score :
         return "You win"
     else:
-        return "computer win"
+        return "Dealer win"
 
 
 user_card = []
-computer_card = []
+dealer_card = []
 is_game_over = False
 
 for _ in range(2):
     user_card.append(deal_card())
-    computer_card.append(deal_card())
+    dealer_card.append(deal_card())
 
 
 user_score = calculate_score(user_card)
-computer_score = calculate_score(computer_card)
+dealer_score = calculate_score(dealer_card)
 
 while not is_game_over:
     user_score = calculate_score(user_card)
-    computer_score = calculate_score(computer_card)
+    computer_score = calculate_score(dealer_card)
     print(f"Your cards are {user_card} and score is {user_score}")
-    print(f"Computer's first card: {computer_card[0]} ")
+    print(f"Dealer's first card: {dealer_card[0]} ")
 
-    if user_score == 0 or computer_score == 0 or user_score > 21:
+    if user_score == 0 or dealer_score == 0 or user_score > 21:
         is_game_over = True
     else:
         if user_score == 21 :
@@ -61,11 +61,11 @@ while not is_game_over:
         else:
             is_game_over = True
 
-while computer_score != 0 and computer_score < 17:
-    computer_card.append(deal_card())
-    computer_score = calculate_score(computer_card)
+while dealer_score != 0 and dealer_score < 17:
+    dealer_card.append(deal_card())
+    dealer_score = calculate_score(dealer_card)
 
 
-print(f"computer cards: {computer_card}",)
-print(f"compute score: {computer_score}")
-print(compare_scores(computer_score, user_score))
+print(f"computer cards: {dealer_card}",)
+print(f"compute score: {dealer_score}")
+print(compare_scores(dealer_score, user_score))
